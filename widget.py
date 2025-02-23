@@ -3,14 +3,13 @@ from PyQt5.QtWidgets import QApplication, QLabel, QMainWindow, QInputDialog, QMe
 from datetime import datetime
 import sys
 
-
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        # Window setup
+        # Window setup: Qt.Tool hides the window icon from the taskbar
         self.setWindowTitle("HOURS REMAINING IN YOUR LIFE")
-        self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint)
+        self.setWindowFlags(Qt.WindowStaysOnTopHint | Qt.FramelessWindowHint | Qt.Tool)
         self.setAttribute(Qt.WA_TranslucentBackground)
         self.resize(300, 100)
 
@@ -55,7 +54,6 @@ class MainWindow(QMainWindow):
                 self.end_date = datetime.strptime(new_date_str, "%Y-%m-%d %H:%M:%S")
             except ValueError:
                 QMessageBox.warning(self, "Error", "Invalid date format. Try again!")
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
